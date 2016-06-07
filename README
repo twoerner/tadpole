@@ -1,0 +1,4 @@
+1. obtain tadpole lure
+2. assemble/solder as per wiki.minnowboard.org/Tadpole_Lure
+3. use OE to create an image for the minnow (core-image-full-cmdline is good)
+4. add tadpole_blink.sh to image and run
