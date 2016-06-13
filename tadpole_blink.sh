@@ -18,15 +18,19 @@ gpio_start() {
 	echo out > /sys/class/gpio/gpio339/direction
 	echo out > /sys/class/gpio/gpio340/direction
 
-	echo 1 > /sys/class/gpio/gpio338/value
-	echo 1 > /sys/class/gpio/gpio339/value
-	echo 1 > /sys/class/gpio/gpio340/value
+	echo 1 > /sys/class/gpio/gpio338/active_low
+	echo 1 > /sys/class/gpio/gpio339/active_low
+	echo 1 > /sys/class/gpio/gpio340/active_low
+
+	echo 0 > /sys/class/gpio/gpio338/value
+	echo 0 > /sys/class/gpio/gpio339/value
+	echo 0 > /sys/class/gpio/gpio340/value
 }
 
 gpio_cleanup() {
-	echo 1 > /sys/class/gpio/gpio338/value
-	echo 1 > /sys/class/gpio/gpio339/value
-	echo 1 > /sys/class/gpio/gpio340/value
+	echo 0 > /sys/class/gpio/gpio338/value
+	echo 0 > /sys/class/gpio/gpio339/value
+	echo 0 > /sys/class/gpio/gpio340/value
 
 	echo 338 > /sys/class/gpio/unexport
 	echo 339 > /sys/class/gpio/unexport
@@ -39,44 +43,44 @@ gpio_cleanup > /dev/null 2>&1
 gpio_start
 while [ 1 ]; do
 	# white
-	echo 0 > /sys/class/gpio/gpio338/value
-	echo 0 > /sys/class/gpio/gpio339/value
-	echo 0 > /sys/class/gpio/gpio340/value
+	echo 1 > /sys/class/gpio/gpio338/value
+	echo 1 > /sys/class/gpio/gpio339/value
+	echo 1 > /sys/class/gpio/gpio340/value
 	usleep $SLEEPTIME_MS
 
 	# red + green = yellow
-	echo 0 > /sys/class/gpio/gpio338/value
-	echo 0 > /sys/class/gpio/gpio339/value
-	echo 1 > /sys/class/gpio/gpio340/value
+	echo 1 > /sys/class/gpio/gpio338/value
+	echo 1 > /sys/class/gpio/gpio339/value
+	echo 0 > /sys/class/gpio/gpio340/value
 	usleep $SLEEPTIME_MS
 
 	# blue + red = magenta
-	echo 0 > /sys/class/gpio/gpio338/value
-	echo 1 > /sys/class/gpio/gpio339/value
-	echo 0 > /sys/class/gpio/gpio340/value
+	echo 1 > /sys/class/gpio/gpio338/value
+	echo 0 > /sys/class/gpio/gpio339/value
+	echo 1 > /sys/class/gpio/gpio340/value
 	usleep $SLEEPTIME_MS
 
 	# red
+	echo 1 > /sys/class/gpio/gpio338/value
+	echo 0 > /sys/class/gpio/gpio339/value
+	echo 0 > /sys/class/gpio/gpio340/value
+	usleep $SLEEPTIME_MS
+
+	# blue + green = cyan
 	echo 0 > /sys/class/gpio/gpio338/value
 	echo 1 > /sys/class/gpio/gpio339/value
 	echo 1 > /sys/class/gpio/gpio340/value
 	usleep $SLEEPTIME_MS
 
-	# blue + green = cyan
-	echo 1 > /sys/class/gpio/gpio338/value
-	echo 0 > /sys/class/gpio/gpio339/value
-	echo 0 > /sys/class/gpio/gpio340/value
-	usleep $SLEEPTIME_MS
-
 	# green
-	echo 1 > /sys/class/gpio/gpio338/value
-	echo 0 > /sys/class/gpio/gpio339/value
-	echo 1 > /sys/class/gpio/gpio340/value
+	echo 0 > /sys/class/gpio/gpio338/value
+	echo 1 > /sys/class/gpio/gpio339/value
+	echo 0 > /sys/class/gpio/gpio340/value
 	usleep $SLEEPTIME_MS
 
 	# blue
-	echo 1 > /sys/class/gpio/gpio338/value
-	echo 1 > /sys/class/gpio/gpio339/value
-	echo 0 > /sys/class/gpio/gpio340/value
+	echo 0 > /sys/class/gpio/gpio338/value
+	echo 0 > /sys/class/gpio/gpio339/value
+	echo 1 > /sys/class/gpio/gpio340/value
 	usleep $SLEEPTIME_MS
 done
