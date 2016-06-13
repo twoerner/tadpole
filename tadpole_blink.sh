@@ -48,12 +48,6 @@ while [ 1 ]; do
 	echo 1 > /sys/class/gpio/gpio340/value
 	usleep $SLEEPTIME_MS
 
-	# red + green = yellow
-	echo 1 > /sys/class/gpio/gpio338/value
-	echo 1 > /sys/class/gpio/gpio339/value
-	echo 0 > /sys/class/gpio/gpio340/value
-	usleep $SLEEPTIME_MS
-
 	# blue + red = magenta
 	echo 1 > /sys/class/gpio/gpio338/value
 	echo 0 > /sys/class/gpio/gpio339/value
@@ -64,6 +58,18 @@ while [ 1 ]; do
 	echo 1 > /sys/class/gpio/gpio338/value
 	echo 0 > /sys/class/gpio/gpio339/value
 	echo 0 > /sys/class/gpio/gpio340/value
+	usleep $SLEEPTIME_MS
+
+	# off
+	echo 0 > /sys/class/gpio/gpio338/value
+	echo 0 > /sys/class/gpio/gpio339/value
+	echo 0 > /sys/class/gpio/gpio340/value
+	usleep $SLEEPTIME_MS
+
+	# blue
+	echo 0 > /sys/class/gpio/gpio338/value
+	echo 0 > /sys/class/gpio/gpio339/value
+	echo 1 > /sys/class/gpio/gpio340/value
 	usleep $SLEEPTIME_MS
 
 	# blue + green = cyan
@@ -78,9 +84,9 @@ while [ 1 ]; do
 	echo 0 > /sys/class/gpio/gpio340/value
 	usleep $SLEEPTIME_MS
 
-	# blue
-	echo 0 > /sys/class/gpio/gpio338/value
-	echo 0 > /sys/class/gpio/gpio339/value
-	echo 1 > /sys/class/gpio/gpio340/value
+	# red + green = yellow
+	echo 1 > /sys/class/gpio/gpio338/value
+	echo 1 > /sys/class/gpio/gpio339/value
+	echo 0 > /sys/class/gpio/gpio340/value
 	usleep $SLEEPTIME_MS
 done
