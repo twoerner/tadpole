@@ -38,36 +38,43 @@ trap gpio_cleanup EXIT
 gpio_cleanup > /dev/null 2>&1
 gpio_start
 while [ 1 ]; do
+	# white
 	echo 0 > /sys/class/gpio/gpio338/value
 	echo 0 > /sys/class/gpio/gpio339/value
 	echo 0 > /sys/class/gpio/gpio340/value
 	usleep $SLEEPTIME_MS
 
+	# red + green = yellow
 	echo 0 > /sys/class/gpio/gpio338/value
 	echo 0 > /sys/class/gpio/gpio339/value
 	echo 1 > /sys/class/gpio/gpio340/value
 	usleep $SLEEPTIME_MS
 
+	# blue + red = magenta
 	echo 0 > /sys/class/gpio/gpio338/value
 	echo 1 > /sys/class/gpio/gpio339/value
 	echo 0 > /sys/class/gpio/gpio340/value
 	usleep $SLEEPTIME_MS
 
+	# red
 	echo 0 > /sys/class/gpio/gpio338/value
 	echo 1 > /sys/class/gpio/gpio339/value
 	echo 1 > /sys/class/gpio/gpio340/value
 	usleep $SLEEPTIME_MS
 
+	# blue + green = cyan
 	echo 1 > /sys/class/gpio/gpio338/value
 	echo 0 > /sys/class/gpio/gpio339/value
 	echo 0 > /sys/class/gpio/gpio340/value
 	usleep $SLEEPTIME_MS
 
+	# green
 	echo 1 > /sys/class/gpio/gpio338/value
 	echo 0 > /sys/class/gpio/gpio339/value
 	echo 1 > /sys/class/gpio/gpio340/value
 	usleep $SLEEPTIME_MS
 
+	# blue
 	echo 1 > /sys/class/gpio/gpio338/value
 	echo 1 > /sys/class/gpio/gpio339/value
 	echo 0 > /sys/class/gpio/gpio340/value
