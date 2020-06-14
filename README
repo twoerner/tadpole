@@ -1,4 +1,6 @@
-1. obtain tadpole lure
-2. assemble/solder as per wiki.minnowboard.org/Tadpole_Lure
+1. obtain tadpole lure (it blinks the led on Calamari Lure as well - https://elinux.org/Minnowboard:MaxLures#Calamari_Lure https://elinux.org/Minnowboard:MaxLures#Calamari_Lure)
+2. assemble/solder as per http://minnowboard.outof.biz/Tadpole_Lure.html
 3. use OE to create an image for the minnow (core-image-full-cmdline is good)
 4. add tadpole_blink.sh to image and run
+5. instead of adding it manually to the image you can use the tadpole.bb recipe here to install it automatically
+   (copy tadpole.bb into your layer, add it to image with IMAGE_INSTALL_append = " tadpole")
